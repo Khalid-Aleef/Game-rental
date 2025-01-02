@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  '$game_id', 
                                  '$expire_date'
                              )";
-
             if (mysqli_query($conn, $insert_query)) {
                 // Step 4: Increment user points in the `user` table
                 $update_points_query = "UPDATE user SET `User Point` = `User Point` + 1 WHERE user_id = '$user_id'";
