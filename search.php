@@ -149,7 +149,7 @@ include("dbconnect.php"); // Include database connection
                     echo "<h3>" . $highlightedName . "</h3>";
                     echo "<h4>Genre: " . htmlspecialchars($row['Genre']) . "</h4>";
                     echo "<h4>Platform: " . htmlspecialchars($row['Platform']) . "</h4>";
-                    echo "<h4>Price/Day: $" . htmlspecialchars($row['Price Per Day']) . "</h4>";
+                    echo "<h4>Price/Day:<br>BDT- " . htmlspecialchars($row['Price Per Day']) . "/- " ."</h4>";
                     echo "<button onclick='rentGame(\"" . htmlspecialchars($row['Game ID'], ENT_QUOTES) . "\")'>Rent Now</button>";
                     echo "</div>";
                 }
