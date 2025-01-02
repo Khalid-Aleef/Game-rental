@@ -1,0 +1,131 @@
+body {
+    background-image: url('bg_img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    padding-top: 100px; /* Added padding to the top for more space */
+}
+h1 {
+    font-family: 'Silkscreen', sans-serif;
+    color: white;
+    font-size: 70px;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 30px; /* Adjusted the top position to create space */
+    left: 20px;
+}
+nav {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+}
+nav button {
+    background-color: rgb(28, 159, 67, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Silkscreen', sans-serif;
+    margin: 0 5px;
+    opacity: 1; /* Default opacity */
+}
+nav button:hover {
+    background-color: rgb(5, 101, 7);
+}
+nav button.active {
+    background-color: rgb(5, 101, 7); /* Slightly darker green for active */
+    opacity: 0.7; /* Dimmed appearance */
+    cursor: default; /* No pointer for active button */
+    pointer-events: none; /* Prevent clicks on the active button */
+}
+.search-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.search-container input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: 'Silkscreen', sans-serif;
+}
+.search-container button {
+    background-color: rgb(28, 159, 67, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Silkscreen', sans-serif;
+}
+.search-container button:hover {
+    background-color: rgb(5, 101, 7);
+}
+.games-container {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    height: 60%;
+    overflow-y: auto;
+    margin-top: 50px;
+}
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.game {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+.game img {
+    width: 100%;
+    height: auto;  /* Maintain aspect ratio */
+    max-height: 150px; /* Limit the height to 150px, adjust as needed */
+    object-fit: contain; /* Ensure the entire image is visible */
+    border-radius: 8px;
+}
+h2 {
+    font-family: 'Silkscreen', sans-serif;
+    
+}
+h4 {
+    font-family: 'Silkscreen', sans-serif;
+    font-size: small;
+    
+}
+
+.game h3 {
+    font-family: 'Silkscreen', sans-serif;
+    margin: 10px 0;
+}
+.game button {
+    background-color: rgb(28, 159, 67, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Silkscreen', sans-serif;
+}
+.game button:hover {
+    background-color: rgb(5, 101, 7);
+}
