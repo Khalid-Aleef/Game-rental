@@ -7,6 +7,7 @@ if (isset($_POST['Login'])) {
     // Get user input
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+	
 
     // Prepare the SQL statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT user_id, password FROM user WHERE email = ?");
@@ -17,8 +18,14 @@ if (isset($_POST['Login'])) {
 
     // Get the result
     $stmt->store_result();
+	if ($email === 'admin' && $password === 'admin') {
+        // Redirect to admin.php
+        header("Location: admin.php");
+        exit;
+	}	
 
-    if ($stmt->num_rows > 0) {
+
+    elseif ($stmt->num_rows > 0) {
         $stmt->bind_result($user_id, $hashed_password);
         $stmt->fetch();
 
@@ -30,6 +37,7 @@ if (isset($_POST['Login'])) {
             // Redirect to the home page
             header("Location: home.php");
             exit();
+
         } else {
             echo "<script>
 				alert('Invalid Password. Please try again.');

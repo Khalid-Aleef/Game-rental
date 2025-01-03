@@ -22,7 +22,7 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
     $user_data = mysqli_fetch_assoc($user_result);
 
     // Determine user type based on points
-    $user_type = "Regular";
+    $user_type = "General";
     $discount_message = "No discount currently available. Keep earning points! Reach 10 points to unlock Bronze status and enjoy a 5% discount on your next purchases!";
 
     if ($user_data['User Point'] > 30) {
@@ -70,37 +70,26 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
         h1 {
             font-family: 'Silkscreen', sans-serif;
             color: white;
-            font-size: 70px;
+            font-size: 50px; 
             margin: 0;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             position: absolute;
-            top: 30px;
+            top: 20px; 
             left: 20px;
-        }
-        h2 {
-            font-family: 'Silkscreen', sans-serif;
-            color: white;
-            font-size: 20px;
-            margin: 0;
-            
-            position: absolute;
-            
-            
-            align-items: center;
         }
         nav {
             position: absolute;
-            top: 120px;
+            top: 100px;
             left: 20px;
         }
         nav button {
             background-color: rgb(28, 159, 67, 0.9);
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px; 
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px; 
             font-family: 'Silkscreen', sans-serif;
             margin: 0 5px;
         }
@@ -110,32 +99,48 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
         .account-container {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
-            padding: 15px; /* Reduced padding */
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 80%; /* Reduced width */
-            max-width: 400px; /* Reduced maximum width */
+            width: 70%; 
+            max-width: 300px; 
             text-align: center;
         }
         .account-details {
             font-family: 'Silkscreen', sans-serif;
-            font-size: 18px;
-            margin: 20px 0;
-            line-height: 1.8;
+            font-size: 16px; 
+            margin: 10px 0; 
+            line-height: 1.5;
         }
         .logout-button {
-            background-color: red;
+            background-color: rgb(255, 69, 58);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 10px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Silkscreen', sans-serif;
-            margin-top: 20px;
+            margin-top: 8px;
+
         }
-        .logout-button:hover {
-            background-color: darkred;
+        .edit-button, .save-button, .cancel-button {
+            background-color: rgb(28, 159, 67, 0.9);
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px; 
+            font-family: 'Silkscreen', sans-serif;
+            margin-top: 8px;
+        }
+        .logout-button:hover{
+            background-color: rgb(159, 17, 26);
+
+        }
+        .edit-button:hover, .save-button:hover, .cancel-button:hover {
+            background-color: rgb(5, 101, 7);
         }
     </style>
 </head>
@@ -147,17 +152,25 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
         <button onclick="navigateTo('library')">Library</button>
     </nav>
     <div class="account-container">
-        
         <div class="account-details">
-            <p><strong>Welcome, <?php echo strtoupper($user_data['Name']); ?></strong></p>
+            <p><strong>Welcome, <span id="userName"><?php echo strtoupper($user_data['Name']); ?></span></strong></p>
             <p><strong>User ID:</strong> <?php echo $user_data['User_id']; ?></p>
             <p><strong>Total Owned Games:</strong> <?php echo $user_data['total_owned_games']; ?></p>
             <p><strong>User Points:</strong> <?php echo $user_data['User Point']; ?></p>
             <p><strong>User Type:</strong> <?php echo $user_type; ?></p>
-            <p style="color: yellow;; font-size: 14px;"><strong>Discount Information:</strong> <?php echo $discount_message; ?></p>
+            <p style="color: yellow; font-size: 14px;"><strong>Discount Information:</strong> <?php echo $discount_message; ?></p>
         </div>
+        
+        <form id="editNameForm" method="POST" action="update_name.php" style="display: none; max-width: 250px; margin: 10px auto;">
+            <input type="text" name="new_name" placeholder="Enter new name" required style="width: 90%; padding: 6px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc;">
+            <button type="submit" class="save-button" style="padding: 6px 12px; font-size: 14px;">Save</button>
+            <button type="button" class="cancel-button" style="padding: 6px 12px; font-size: 14px;" onclick="cancelEdit()">Cancel</button>
+        </form>
+        
+        <button class="edit-button" onclick="editName()">Edit Name</button>
         <button class="logout-button" onclick="logout()">Logout</button>
     </div>
+
     <script>
         function navigateTo(page) {
         if (page === 'games') {
@@ -174,6 +187,15 @@ if ($user_result && mysqli_num_rows($user_result) > 0) {
         fetch('logout.php')
             .then(() => window.location.href = 'index.php');
         }
+        
+        function editName() {
+        document.getElementById('editNameForm').style.display = 'block';
+        }
+
+        function cancelEdit() {
+            document.getElementById('editNameForm').style.display = 'none';
+        }
+
     </script>
 </body>
 </html>

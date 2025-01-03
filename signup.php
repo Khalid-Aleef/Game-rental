@@ -48,6 +48,7 @@
             border-radius: 5px;
             border: none;
             font-size: 14px; 
+            font-family: 'Silkscreen', sans-serif;
         }
         button {
             background-color: rgb(28, 159, 67);
@@ -57,6 +58,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px; 
+            font-family: 'Silkscreen', sans-serif;
         }
         button:hover {
             background-color: rgb(5, 101, 7);
