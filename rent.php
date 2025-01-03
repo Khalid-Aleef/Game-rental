@@ -25,14 +25,14 @@ if ($userResult && mysqli_num_rows($userResult) > 0) {
         $discountResult = mysqli_query($conn, $discountQuery);
         if (mysqli_num_rows($discountResult) > 0) {
             $discountData = mysqli_fetch_assoc($discountResult);
-            $discountAmount = $discountData[`gold discount amount`];
+            $discountAmount = $discountData['gold discount amount'];
         } 
     } elseif ($userPoints > 20) {
         $discountQuery = "SELECT `silver discount amount` FROM silver WHERE `User_id` = '$userId'";
         $discountResult = mysqli_query($conn, $discountQuery);
         if (mysqli_num_rows($discountResult) > 0) {
             $discountData = mysqli_fetch_assoc($discountResult);
-            $discountAmount = $discountData[`silver discount amount`];
+            $discountAmount = $discountData['silver discount amount'];
         } 
     } elseif ($userPoints > 10) {  
         $discountQuery = "SELECT `bronze discount amount` FROM bronze WHERE `User_id` = '$userId'";
@@ -46,7 +46,7 @@ if ($userResult && mysqli_num_rows($userResult) > 0) {
         $discountResult = mysqli_query($conn, $discountQuery);
         if (mysqli_num_rows($discountResult) > 0) {
             $discountData = mysqli_fetch_assoc($discountResult);
-            $discountAmount = $discountData[`General Discount Amount`];
+            $discountAmount = $discountData['General Discount Amount'];
         } 
     }
     
@@ -61,10 +61,10 @@ if ($gameId) {
         $_SESSION['Game ID'] = $game['Game ID'];
         $_SESSION['Game Name'] = $game['Name'];
     } else {
-        $game = null; // No game found
+        $game = null; 
     }
 } else {
-    $game = null; // No Game ID provided
+    $game = null; 
 }
 ?>
 <!DOCTYPE html>
@@ -91,13 +91,13 @@ if ($gameId) {
             font-family: 'Silkscreen', sans-serif;
         }
         h1 {
-            margin-top: 20px;
+            margin-top: 50px;
             text-align: center;
-            font-size: 36px;
+            font-size: 30px;
         }
         .game-details {
             background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
             width: 90%;

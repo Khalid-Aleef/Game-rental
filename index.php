@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <title>GameNest Login</title>
     <style>
+        
         body {
             background-image: url('bg_img.jpg');
             background-size: cover;
@@ -66,6 +67,7 @@
             margin-top: 20px;
             font-size: 16px;
         }
+
         .signup-button {
             display: inline-block;
             font-family: 'Silkscreen', sans-serif;

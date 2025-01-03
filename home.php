@@ -116,7 +116,7 @@ include("dbconnect.php"); // Include database connection
     <button class="search-button" onclick="navigateToSearch()">Search</button>
     <h1>GameNest</h1>
     <nav>
-        <button id="gamesButton" class="active" onclick="navigateTo('games')">Store</button>
+        <button onclick="navigateTo('games')">Store</button>
         <button onclick="navigateTo('account')">Account</button>
         <button onclick="navigateTo('library')">Library</button>
         
@@ -125,8 +125,8 @@ include("dbconnect.php"); // Include database connection
     <div id="availableGames" class="games-container">
         <div class="game-list">
             <?php
-            // Fetch games from the database
-            $query = "SELECT * FROM game WHERE Availability = 1"; // Fetch only available games
+            
+            $query = "SELECT * FROM game WHERE Availability = 1"; 
             $result = mysqli_query($conn, $query);
 
             if (mysqli_num_rows($result) > 0) {

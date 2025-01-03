@@ -3,7 +3,7 @@ include("dbconnect.php");
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capture form data
+    
     $game_id = $_SESSION['Game ID']; // Matches `Game id` in  table
     $expire_date = mysqli_real_escape_string($conn, $_POST['expire_date']); // Matches `Time Limit` in table
     $payment_id = mysqli_real_escape_string($conn, $_POST['payment_id']); 
@@ -15,25 +15,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Step 1: Checking if the user has a library
+    //Checking if the user has a library
     $library_query = "SELECT ULibrary_Id FROM user WHERE user_id = '$user_id'";
     $library_result = mysqli_query($conn, $library_query);
+
 
     if ($library_result && $library_row = mysqli_fetch_assoc($library_result)) {
         $library_id = $library_row['ULibrary_Id'];
 
-        // Step 2: Check if the game already exists
+        // Check if the game already exists
         $check_query = "SELECT * FROM `owned games` WHERE library_id = '$library_id' AND `Game id` = '$game_id'";
         $check_result = mysqli_query($conn, $check_query);
 
         if ($check_result && mysqli_num_rows($check_result) > 0) {
-            // Game already exists 
+            // if already exists
             echo "<script>
                     alert('This game already exists in your library.');
                     window.location.href = 'home.php';
                 </script>";
         } else {
-            // Step 3: Insert the game 
+            //Inserting the game 
             $insert_query = "INSERT INTO `owned games` (library_id, `Game name`, `Game id`, `Time Limit`)
                              VALUES (
                                  '$library_id', 
@@ -42,24 +43,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  '$expire_date'
                              )";
             if (mysqli_query($conn, $insert_query)) {
-                // Step 4: Increment user points 
+                // Increment user points 
                 $update_points_query = "UPDATE user SET `User Point` = `User Point` + 1 WHERE user_id = '$user_id'";
                 mysqli_query($conn, $update_points_query);
 
-                // Step 5: Check the updated user points and update their table accordingly
+                // update their table accordingly to user points
                 $points_query = "SELECT `User Point` FROM user WHERE user_id = '$user_id'";
                 $points_result = mysqli_query($conn, $points_query);
 
                 if ($points_result && $points_row = mysqli_fetch_assoc($points_result)) {
                     $user_points = $points_row['User Point'];
 
-                    // Remove the user from all membership tiers first
+                    // Remove the user from current class
                     mysqli_query($conn, "DELETE FROM general WHERE User_Id = '$user_id'");
                     mysqli_query($conn, "DELETE FROM bronze WHERE User_id = '$user_id'");
                     mysqli_query($conn, "DELETE FROM silver WHERE User_id = '$user_id'");
                     mysqli_query($conn, "DELETE FROM gold WHERE User_id = '$user_id'");
 
-                    // Inserting the user into the appropriate class
+                    // Inserting the user into class table according to user point 
                     if ($user_points > 30) {
                         // Gold class
                         mysqli_query($conn, "INSERT INTO gold (User_id, `gold discount amount`) VALUES ('$user_id', 0.15)");
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
 
-                // alert
+               
                 
                 echo "<script>
                         alert('Game successfully added to your library! Your points and status have been updated.');

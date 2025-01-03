@@ -37,7 +37,7 @@ input[type="text"], input[type="password"] {
     border-radius: 5px;
     border: none;
     font-size: 16px;
-    font-family: 'Silkscreen', sans-serif; /* Ensures the input text uses the 'Silkscreen' font */
+    font-family: 'Silkscreen', sans-serif; 
 }
 button {
     background-color: rgb(28, 159, 67);
@@ -47,7 +47,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Silkscreen', sans-serif; /* Ensures the button uses the 'Silkscreen' font */
+    font-family: 'Silkscreen', sans-serif; 
 }
 button:hover {
     background-color: rgb(5, 101, 7);

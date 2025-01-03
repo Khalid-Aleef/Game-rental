@@ -3,7 +3,7 @@ if (isset($_POST['signup'])) {
     // Database connection
     require_once "dbconnect.php";
 
-    // Sanitize user input
+    
     $user_id = mysqli_real_escape_string($conn, trim($_POST['user_id']));
     $name = mysqli_real_escape_string($conn, trim($_POST['name']));
     $email = mysqli_real_escape_string($conn, trim($_POST['email']));
@@ -13,7 +13,7 @@ if (isset($_POST['signup'])) {
     $upayment_id = isset($_POST['upayment_id']) ? mysqli_real_escape_string($conn, trim($_POST['upayment_id'])) : NULL;
     $ulibrary_id = isset($_POST['user_id']) ? mysqli_real_escape_string($conn, trim($_POST['user_id'])) : NULL;
 
-    // Validate passwords
+    
     if ($password !== $re_password) {
         echo "<script>
                 alert('Passwords do not match! Please try again.');
@@ -22,7 +22,7 @@ if (isset($_POST['signup'])) {
         exit();
     }
 
-    // Check if User ID already exists
+   
     $check_query = "SELECT User_id FROM user WHERE User_id = ?";
     $check_stmt = $conn->prepare($check_query);
     $check_stmt->bind_param("s", $user_id);
@@ -39,7 +39,7 @@ if (isset($_POST['signup'])) {
 
     $check_stmt->close();
 
-    // Hash the password for security
+    
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert user into the `user` table
