@@ -125,7 +125,7 @@ include("dbconnect.php");
 
             if (isset($_GET['search'])){
                 $searchQuery = mysqli_real_escape_string($conn, $_GET['search']);
-                $query = "SELECT * FROM game WHERE Name LIKE '%$searchQuery%'"; // Query for search
+                $query = "SELECT * FROM game WHERE Name LIKE '%$searchQuery%'";
             }
 
             $result = mysqli_query($conn, $query);

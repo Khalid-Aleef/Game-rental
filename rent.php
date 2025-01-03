@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$userId = $_SESSION['user_id']; // User ID from session
+$userId = $_SESSION['user_id']; 
 $userQuery = "SELECT `User Point` FROM user WHERE `User_id` = '$userId'";
 $userResult = mysqli_query($conn, $userQuery);
 
@@ -122,6 +122,7 @@ if ($gameId) {
             cursor: pointer;
             font-size: 16px;
             padding: 10px;
+            font-family: 'Silkscreen', sans-serif;
         }
         button:hover {
             background-color: rgb(5, 101, 7);
@@ -148,7 +149,6 @@ if ($gameId) {
                 <input type="hidden" id="discountAmount" value="<?php echo $discountAmount; ?>">
                 <input type="hidden" id="pricePerDay" value="<?php echo $game['Price Per Day']; ?>">
                 
-
                 <label for="expireDate">Select Expire Date:</label>
                 <input type="date" id="expireDate" name="expire_date" required onchange="calculateDays()">
 
@@ -172,8 +172,8 @@ if ($gameId) {
       
     function calculateDays() {
         const expireDateInput = document.getElementById('expireDate').value;
-        const pricePerDay = parseFloat(document.getElementById('pricePerDay').value) || 0; // Default to 0 if undefined
-        const discountAmount = parseFloat(document.getElementById('discountAmount').value) || 0; // Default to 0 if undefined
+        const pricePerDay = parseFloat(document.getElementById('pricePerDay').value) || 0; 
+        const discountAmount = parseFloat(document.getElementById('discountAmount').value) || 0;
 
         if (expireDateInput) {
             const expireDate = new Date(expireDateInput);
@@ -184,7 +184,7 @@ if ($gameId) {
             const validDays = totalDays > 0 ? totalDays : 0;
 
             const regularPrice = validDays * pricePerDay;
-            const discountedPrice = Math.max(regularPrice - regularPrice*discountAmount, 0); // Ensure no negative price
+            const discountedPrice = Math.max(regularPrice - regularPrice*discountAmount, 0); 
 
             document.getElementById('totalDays').textContent = validDays;
             document.getElementById('regularPrice').textContent = regularPrice.toFixed(2);

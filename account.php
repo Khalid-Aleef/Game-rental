@@ -1,14 +1,14 @@
 <?php
-include("dbconnect.php"); // Include database connection
+include("dbconnect.php"); 
 session_start();
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
 
-// Get user ID from session
+
 $user_id = $_SESSION['user_id'];
 
 // Fetch user details from the database

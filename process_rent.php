@@ -4,8 +4,8 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $game_id = $_SESSION['Game ID']; // Matches `Game id` in  table
-    $expire_date = mysqli_real_escape_string($conn, $_POST['expire_date']); // Matches `Time Limit` in table
+    $game_id = $_SESSION['Game ID']; 
+    $expire_date = mysqli_real_escape_string($conn, $_POST['expire_date']); 
     $payment_id = mysqli_real_escape_string($conn, $_POST['payment_id']); 
     $user_id = $_SESSION['user_id'];
 

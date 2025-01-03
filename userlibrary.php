@@ -105,6 +105,8 @@ session_start();
         // Get user ID from session
         $user_id = $_SESSION['user_id'];
 
+
+
         // Fetch library ID
         $library_query = "SELECT ULibrary_Id FROM user WHERE User_id = '$user_id'";
         $library_result = mysqli_query($conn, $library_query);
@@ -122,6 +124,7 @@ session_start();
             $owned_query = "SELECT `Game name`, `Game id`, `Time Limit` 
                             FROM `owned games`
                             WHERE library_id = '$library_id'";
+
             $owned_result = mysqli_query($conn, $owned_query);
 
             if (mysqli_num_rows($owned_result) > 0) {
@@ -132,8 +135,8 @@ session_start();
 
                     echo "<div class='game-item'>
                             <div class='game-info'>
-                                <strong>Game Name:</strong> $game_name<br>
-                                <strong>Game ID:</strong> $game_id<br>
+                                <strong>Game Name:</strong> $game_name <br>
+                                <strong>Game ID:</strong> $game_id <br>
                                 <strong>Expires On:</strong> $time_limit
                             </div>
                             <button class='delete-btn' onclick=\"confirmDelete('$game_id')\">Delete</button>
